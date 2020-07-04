@@ -1,0 +1,1485 @@
+const H1WordList = [{
+    "type": 1,
+    "word": "あ"
+}, {
+    "type": 1,
+    "word": "い"
+}, {
+    "type": 1,
+    "word": "う"
+}, {
+    "type": 1,
+    "word": "え"
+}, {
+    "type": 1,
+    "word": "お"
+}, {
+    "type": 1,
+    "word": "か"
+}, {
+    "type": 1,
+    "word": "き"
+}, {
+    "type": 1,
+    "word": "く"
+}, {
+    "type": 1,
+    "word": "け"
+}, {
+    "type": 1,
+    "word": "こ"
+}, {
+    "type": 1,
+    "word": "さ"
+}, {
+    "type": 1,
+    "word": "し"
+}, {
+    "type": 1,
+    "word": "す"
+}, {
+    "type": 1,
+    "word": "せ"
+}, {
+    "type": 1,
+    "word": "そ"
+}, {
+    "type": 1,
+    "word": "た"
+}, {
+    "type": 1,
+    "word": "ち"
+}, {
+    "type": 1,
+    "word": "つ"
+}, {
+    "type": 1,
+    "word": "て"
+}, {
+    "type": 1,
+    "word": "と"
+}, {
+    "type": 1,
+    "word": "な"
+}, {
+    "type": 1,
+    "word": "に"
+}, {
+    "type": 1,
+    "word": "ぬ"
+}, {
+    "type": 1,
+    "word": "ね"
+}, {
+    "type": 1,
+    "word": "の"
+}, {
+    "type": 1,
+    "word": "は"
+}, {
+    "type": 1,
+    "word": "ひ"
+}, {
+    "type": 1,
+    "word": "ふ"
+}, {
+    "type": 1,
+    "word": "へ"
+}, {
+    "type": 1,
+    "word": "ほ"
+}, {
+    "type": 1,
+    "word": "ま"
+}, {
+    "type": 1,
+    "word": "み"
+}, {
+    "type": 1,
+    "word": "む"
+}, {
+    "type": 1,
+    "word": "め"
+}, {
+    "type": 1,
+    "word": "も"
+}, {
+    "type": 1,
+    "word": "や"
+}, {
+    "type": 1,
+    "word": "ゆ"
+}, {
+    "type": 1,
+    "word": "よ"
+}, {
+    "type": 1,
+    "word": "ら"
+}, {
+    "type": 1,
+    "word": "り"
+}, {
+    "type": 1,
+    "word": "る"
+}, {
+    "type": 1,
+    "word": "れ"
+}, {
+    "type": 1,
+    "word": "ろ"
+}, {
+    "type": 1,
+    "word": "わ"
+}, {
+    "type": 1,
+    "word": "を"
+}, {
+    "type": 1,
+    "word": "ん"
+}]
+// アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲ
+const K1WordList = [{
+    "type": 1,
+    "word": "ア"
+}, {
+    "type": 1,
+    "word": "イ"
+}, {
+    "type": 1,
+    "word": "ウ"
+}, {
+    "type": 1,
+    "word": "エ"
+}, {
+    "type": 1,
+    "word": "オ"
+}, {
+    "type": 1,
+    "word": "カ"
+}, {
+    "type": 1,
+    "word": "キ"
+}, {
+    "type": 1,
+    "word": "ク"
+}, {
+    "type": 1,
+    "word": "ケ"
+}, {
+    "type": 1,
+    "word": "コ"
+}, {
+    "type": 1,
+    "word": "サ"
+}, {
+    "type": 1,
+    "word": "シ"
+}, {
+    "type": 1,
+    "word": "ス"
+}, {
+    "type": 1,
+    "word": "セ"
+}, {
+    "type": 1,
+    "word": "ソ"
+}, {
+    "type": 1,
+    "word": "タ"
+}, {
+    "type": 1,
+    "word": "チ"
+}, {
+    "type": 1,
+    "word": "ツ"
+}, {
+    "type": 1,
+    "word": "テ"
+}, {
+    "type": 1,
+    "word": "ト"
+}, {
+    "type": 1,
+    "word": "ナ"
+}, {
+    "type": 1,
+    "word": "ニ"
+}, {
+    "type": 1,
+    "word": "ヌ"
+}, {
+    "type": 1,
+    "word": "ネ"
+}, {
+    "type": 1,
+    "word": "ノ"
+}, {
+    "type": 1,
+    "word": "ハ"
+}, {
+    "type": 1,
+    "word": "ヒ"
+}, {
+    "type": 1,
+    "word": "フ"
+}, {
+    "type": 1,
+    "word": "ヘ"
+}, {
+    "type": 1,
+    "word": "ホ"
+}, {
+    "type": 1,
+    "word": "マ"
+}, {
+    "type": 1,
+    "word": "ミ"
+}, {
+    "type": 1,
+    "word": "ム"
+}, {
+    "type": 1,
+    "word": "メ"
+}, {
+    "type": 1,
+    "word": "モ"
+}, {
+    "type": 1,
+    "word": "ヤ"
+}, {
+    "type": 1,
+    "word": "ユ"
+}, {
+    "type": 1,
+    "word": "ヨ"
+}, {
+    "type": 1,
+    "word": "ラ"
+}, {
+    "type": 1,
+    "word": "リ"
+}, {
+    "type": 1,
+    "word": "ル"
+}, {
+    "type": 1,
+    "word": "レ"
+}, {
+    "type": 1,
+    "word": "ロ"
+}, {
+    "type": 1,
+    "word": "ワ"
+}, {
+    "type": 1,
+    "word": "ヲ"
+}, {
+    "type": 1,
+    "word": "ン"
+}]
+//がぎぐげござじずぜぞだどづでどばびぶべぼぱぴぷぺぽ
+const H2WordList = [{
+    "type": 2,
+    "word": "が"
+}, {
+    "type": 2,
+    "word": "ぎ"
+}, {
+    "type": 2,
+    "word": "ぐ"
+}, {
+    "type": 2,
+    "word": "げ"
+}, {
+    "type": 2,
+    "word": "ご"
+}, {
+    "type": 2,
+    "word": "ざ"
+}, {
+    "type": 2,
+    "word": "じ"
+}, {
+    "type": 2,
+    "word": "ず"
+}, {
+    "type": 2,
+    "word": "ぜ"
+}, {
+    "type": 2,
+    "word": "ぞ"
+}, {
+    "type": 2,
+    "word": "だ"
+}, {
+    "type": 2,
+    "word": "ど"
+}, {
+    "type": 2,
+    "word": "づ"
+}, {
+    "type": 2,
+    "word": "で"
+}, {
+    "type": 2,
+    "word": "ど"
+}, {
+    "type": 2,
+    "word": "ば"
+}, {
+    "type": 2,
+    "word": "び"
+}, {
+    "type": 2,
+    "word": "ぶ"
+}, {
+    "type": 2,
+    "word": "べ"
+}, {
+    "type": 2,
+    "word": "ぼ"
+}, {
+    "type": 2,
+    "word": "ぱ"
+}, {
+    "type": 2,
+    "word": "ぴ"
+}, {
+    "type": 2,
+    "word": "ぷ"
+}, {
+    "type": 2,
+    "word": "ぺ"
+}, {
+    "type": 2,
+    "word": "ぽ"
+}]
+//ガゲグギゴザジズゼゾダヂヅデドバビブベボパピプペポ
+const K2WordList = [{
+    "type": 2,
+    "word": "ガ"
+}, {
+    "type": 2,
+    "word": "ゲ"
+}, {
+    "type": 2,
+    "word": "グ"
+}, {
+    "type": 2,
+    "word": "ギ"
+}, {
+    "type": 2,
+    "word": "ゴ"
+}, {
+    "type": 2,
+    "word": "ザ"
+}, {
+    "type": 2,
+    "word": "ジ"
+}, {
+    "type": 2,
+    "word": "ズ"
+}, {
+    "type": 2,
+    "word": "ゼ"
+}, {
+    "type": 2,
+    "word": "ゾ"
+}, {
+    "type": 2,
+    "word": "ダ"
+}, {
+    "type": 2,
+    "word": "ヂ"
+}, {
+    "type": 2,
+    "word": "ヅ"
+}, {
+    "type": 2,
+    "word": "デ"
+}, {
+    "type": 2,
+    "word": "ド"
+}, {
+    "type": 2,
+    "word": "バ"
+}, {
+    "type": 2,
+    "word": "ビ"
+}, {
+    "type": 2,
+    "word": "ブ"
+}, {
+    "type": 2,
+    "word": "ベ"
+}, {
+    "type": 2,
+    "word": "ボ"
+}, {
+    "type": 2,
+    "word": "パ"
+}, {
+    "type": 2,
+    "word": "ピ"
+}, {
+    "type": 2,
+    "word": "プ"
+}, {
+    "type": 2,
+    "word": "ペ"
+}, {
+    "type": 2,
+    "word": "ポ"
+}]
+// きゃきゅきょしゃしゅしょちゃちゅちょにゃにゅにょひゃヒュひょみゃみゅみょりゃりゅりょぎゃぎゅぎょじゃじゅじょびゃびゅびょピャピュぴょ
+const H3WordList = [{
+    "type": 3,
+    "word": "きゃ"
+}, {
+    "type": 3,
+    "word": "きゅ"
+}, {
+    "type": 3,
+    "word": "きょ"
+}, {
+    "type": 3,
+    "word": "しゃ"
+}, {
+    "type": 3,
+    "word": "しゅ"
+}, {
+    "type": 3,
+    "word": "しょ"
+}, {
+    "type": 3,
+    "word": "ちゃ"
+}, {
+    "type": 3,
+    "word": "ちゅ"
+}, {
+    "type": 3,
+    "word": "ちょ"
+}, {
+    "type": 3,
+    "word": "にゃ"
+}, {
+    "type": 3,
+    "word": "にゅ"
+}, {
+    "type": 3,
+    "word": "にょ"
+}, {
+    "type": 3,
+    "word": "ひゃ"
+}, {
+    "type": 3,
+    "word": "ヒュ"
+}, {
+    "type": 3,
+    "word": "ひょ"
+}, {
+    "type": 3,
+    "word": "みゃ"
+}, {
+    "type": 3,
+    "word": "みゅ"
+}, {
+    "type": 3,
+    "word": "みょ"
+}, {
+    "type": 3,
+    "word": "りゃ"
+}, {
+    "type": 3,
+    "word": "りゅ"
+}, {
+    "type": 3,
+    "word": "りょ"
+}, {
+    "type": 3,
+    "word": "ぎゃ"
+}, {
+    "type": 3,
+    "word": "ぎゅ"
+}, {
+    "type": 3,
+    "word": "ぎょ"
+}, {
+    "type": 3,
+    "word": "じゃ"
+}, {
+    "type": 3,
+    "word": "じゅ"
+}, {
+    "type": 3,
+    "word": "じょ"
+}, {
+    "type": 3,
+    "word": "びゃ"
+}, {
+    "type": 3,
+    "word": "びゅ"
+}, {
+    "type": 3,
+    "word": "びょ"
+}, {
+    "type": 3,
+    "word": "ピャ"
+}, {
+    "type": 3,
+    "word": "ピュ"
+}, {
+    "type": 3,
+    "word": "ぴょ"
+}]
+//キャキュキョシャシュショチャチュチョニャニュニョヒャヒュヒョミャミュミョリャリュリョギャギュギョジャジュジョビャビュビョピャピュピョ
+const K3WordList = [{
+    "type": 3,
+    "word": "キャ"
+}, {
+    "type": 3,
+    "word": "キュ"
+}, {
+    "type": 3,
+    "word": "キョ"
+}, {
+    "type": 3,
+    "word": "シャ"
+}, {
+    "type": 3,
+    "word": "シュ"
+}, {
+    "type": 3,
+    "word": "ショ"
+}, {
+    "type": 3,
+    "word": "チャ"
+}, {
+    "type": 3,
+    "word": "チュ"
+}, {
+    "type": 3,
+    "word": "チョ"
+}, {
+    "type": 3,
+    "word": "ニャ"
+}, {
+    "type": 3,
+    "word": "ニュ"
+}, {
+    "type": 3,
+    "word": "ニョ"
+}, {
+    "type": 3,
+    "word": "ヒャ"
+}, {
+    "type": 3,
+    "word": "ヒュ"
+}, {
+    "type": 3,
+    "word": "ヒョ"
+}, {
+    "type": 3,
+    "word": "ミャ"
+}, {
+    "type": 3,
+    "word": "ミュ"
+}, {
+    "type": 3,
+    "word": "ミョ"
+}, {
+    "type": 3,
+    "word": "リャ"
+}, {
+    "type": 3,
+    "word": "リュ"
+}, {
+    "type": 3,
+    "word": "リョ"
+}, {
+    "type": 3,
+    "word": "ギャ"
+}, {
+    "type": 3,
+    "word": "ギュ"
+}, {
+    "type": 3,
+    "word": "ギョ"
+}, {
+    "type": 3,
+    "word": "ジャ"
+}, {
+    "type": 3,
+    "word": "ジュ"
+}, {
+    "type": 3,
+    "word": "ジョ"
+}, {
+    "type": 3,
+    "word": "ビャ"
+}, {
+    "type": 3,
+    "word": "ビュ"
+}, {
+    "type": 3,
+    "word": "ビョ"
+}, {
+    "type": 3,
+    "word": "ピャ"
+}, {
+    "type": 3,
+    "word": "ピュ"
+}, {
+    "type": 3,
+    "word": "ピョ"
+}]
+
+const allHWord = [{
+    "type": 1,
+    "word": "あ",
+    "index": 1
+}, {
+    "type": 1,
+    "word": "い",
+    "index": 2
+}, {
+    "type": 1,
+    "word": "う",
+    "index": 3
+}, {
+    "type": 1,
+    "word": "え",
+    "index": 4
+}, {
+    "type": 1,
+    "word": "お",
+    "index": 5
+}, {
+    "type": 1,
+    "word": "か",
+    "index": 6
+}, {
+    "type": 1,
+    "word": "き",
+    "index": 7
+}, {
+    "type": 1,
+    "word": "く",
+    "index": 8
+}, {
+    "type": 1,
+    "word": "け",
+    "index": 9
+}, {
+    "type": 1,
+    "word": "こ",
+    "index": 10
+}, {
+    "type": 1,
+    "word": "さ",
+    "index": 11
+}, {
+    "type": 1,
+    "word": "し",
+    "index": 12
+}, {
+    "type": 1,
+    "word": "す",
+    "index": 13
+}, {
+    "type": 1,
+    "word": "せ",
+    "index": 14
+}, {
+    "type": 1,
+    "word": "そ",
+    "index": 15
+}, {
+    "type": 1,
+    "word": "た",
+    "index": 16
+}, {
+    "type": 1,
+    "word": "ち",
+    "index": 17
+}, {
+    "type": 1,
+    "word": "つ",
+    "index": 18
+}, {
+    "type": 1,
+    "word": "て",
+    "index": 19
+}, {
+    "type": 1,
+    "word": "と",
+    "index": 20
+}, {
+    "type": 1,
+    "word": "な",
+    "index": 21
+}, {
+    "type": 1,
+    "word": "に",
+    "index": 22
+}, {
+    "type": 1,
+    "word": "ぬ",
+    "index": 23
+}, {
+    "type": 1,
+    "word": "ね",
+    "index": 24
+}, {
+    "type": 1,
+    "word": "の",
+    "index": 25
+}, {
+    "type": 1,
+    "word": "は",
+    "index": 26
+}, {
+    "type": 1,
+    "word": "ひ",
+    "index": 27
+}, {
+    "type": 1,
+    "word": "ふ",
+    "index": 28
+}, {
+    "type": 1,
+    "word": "へ",
+    "index": 29
+}, {
+    "type": 1,
+    "word": "ほ",
+    "index": 30
+}, {
+    "type": 1,
+    "word": "ま",
+    "index": 31
+}, {
+    "type": 1,
+    "word": "み",
+    "index": 32
+}, {
+    "type": 1,
+    "word": "む",
+    "index": 33
+}, {
+    "type": 1,
+    "word": "め",
+    "index": 34
+}, {
+    "type": 1,
+    "word": "も",
+    "index": 35
+}, {
+    "type": 1,
+    "word": "や",
+    "index": 36
+}, {
+    "type": 1,
+    "word": "ゆ",
+    "index": 37
+}, {
+    "type": 1,
+    "word": "よ",
+    "index": 38
+}, {
+    "type": 1,
+    "word": "ら",
+    "index": 39
+}, {
+    "type": 1,
+    "word": "り",
+    "index": 40
+}, {
+    "type": 1,
+    "word": "る",
+    "index": 41
+}, {
+    "type": 1,
+    "word": "れ",
+    "index": 42
+}, {
+    "type": 1,
+    "word": "ろ",
+    "index": 43
+}, {
+    "type": 1,
+    "word": "わ",
+    "index": 44
+}, {
+    "type": 1,
+    "word": "を",
+    "index": 45
+}, {
+    "type": 1,
+    "word": "ん",
+    "index": 46
+}, {
+    "type": 2,
+    "word": "が",
+    "index": 47
+}, {
+    "type": 2,
+    "word": "ぎ",
+    "index": 48
+}, {
+    "type": 2,
+    "word": "ぐ",
+    "index": 49
+}, {
+    "type": 2,
+    "word": "げ",
+    "index": 50
+}, {
+    "type": 2,
+    "word": "ご",
+    "index": 51
+}, {
+    "type": 2,
+    "word": "ざ",
+    "index": 52
+}, {
+    "type": 2,
+    "word": "じ",
+    "index": 53
+}, {
+    "type": 2,
+    "word": "ず",
+    "index": 54
+}, {
+    "type": 2,
+    "word": "ぜ",
+    "index": 55
+}, {
+    "type": 2,
+    "word": "ぞ",
+    "index": 56
+}, {
+    "type": 2,
+    "word": "だ",
+    "index": 57
+}, {
+    "type": 2,
+    "word": "ど",
+    "index": 58
+}, {
+    "type": 2,
+    "word": "づ",
+    "index": 59
+}, {
+    "type": 2,
+    "word": "で",
+    "index": 60
+}, {
+    "type": 2,
+    "word": "ど",
+    "index": 61
+}, {
+    "type": 2,
+    "word": "ば",
+    "index": 62
+}, {
+    "type": 2,
+    "word": "び",
+    "index": 63
+}, {
+    "type": 2,
+    "word": "ぶ",
+    "index": 64
+}, {
+    "type": 2,
+    "word": "べ",
+    "index": 65
+}, {
+    "type": 2,
+    "word": "ぼ",
+    "index": 66
+}, {
+    "type": 2,
+    "word": "ぱ",
+    "index": 67
+}, {
+    "type": 2,
+    "word": "ぴ",
+    "index": 68
+}, {
+    "type": 2,
+    "word": "ぷ",
+    "index": 69
+}, {
+    "type": 2,
+    "word": "ぺ",
+    "index": 70
+}, {
+    "type": 2,
+    "word": "ぽ",
+    "index": 71
+}, {
+    "type": 3,
+    "word": "きゃ",
+    "index": 72
+}, {
+    "type": 3,
+    "word": "きゅ",
+    "index": 73
+}, {
+    "type": 3,
+    "word": "きょ",
+    "index": 74
+}, {
+    "type": 3,
+    "word": "しゃ",
+    "index": 75
+}, {
+    "type": 3,
+    "word": "しゅ",
+    "index": 76
+}, {
+    "type": 3,
+    "word": "しょ",
+    "index": 77
+}, {
+    "type": 3,
+    "word": "ちゃ",
+    "index": 78
+}, {
+    "type": 3,
+    "word": "ちゅ",
+    "index": 79
+}, {
+    "type": 3,
+    "word": "ちょ",
+    "index": 80
+}, {
+    "type": 3,
+    "word": "にゃ",
+    "index": 81
+}, {
+    "type": 3,
+    "word": "にゅ",
+    "index": 82
+}, {
+    "type": 3,
+    "word": "にょ",
+    "index": 83
+}, {
+    "type": 3,
+    "word": "ひゃ",
+    "index": 84
+}, {
+    "type": 3,
+    "word": "ヒュ",
+    "index": 85
+}, {
+    "type": 3,
+    "word": "ひょ",
+    "index": 86
+}, {
+    "type": 3,
+    "word": "みゃ",
+    "index": 87
+}, {
+    "type": 3,
+    "word": "みゅ",
+    "index": 88
+}, {
+    "type": 3,
+    "word": "みょ",
+    "index": 89
+}, {
+    "type": 3,
+    "word": "りゃ",
+    "index": 90
+}, {
+    "type": 3,
+    "word": "りゅ",
+    "index": 91
+}, {
+    "type": 3,
+    "word": "りょ",
+    "index": 92
+}, {
+    "type": 3,
+    "word": "ぎゃ",
+    "index": 93
+}, {
+    "type": 3,
+    "word": "ぎゅ",
+    "index": 94
+}, {
+    "type": 3,
+    "word": "ぎょ",
+    "index": 95
+}, {
+    "type": 3,
+    "word": "じゃ",
+    "index": 96
+}, {
+    "type": 3,
+    "word": "じゅ",
+    "index": 97
+}, {
+    "type": 3,
+    "word": "じょ",
+    "index": 98
+}, {
+    "type": 3,
+    "word": "びゃ",
+    "index": 99
+}, {
+    "type": 3,
+    "word": "びゅ",
+    "index": 100
+}, {
+    "type": 3,
+    "word": "びょ",
+    "index": 101
+}, {
+    "type": 3,
+    "word": "ピャ",
+    "index": 102
+}, {
+    "type": 3,
+    "word": "ピュ",
+    "index": 103
+}, {
+    "type": 3,
+    "word": "ぴょ",
+    "index": 104
+}]
+const allKWord = [{
+    "type": 1,
+    "word": "ア",
+    "index": 1
+}, {
+    "type": 1,
+    "word": "イ",
+    "index": 2
+}, {
+    "type": 1,
+    "word": "ウ",
+    "index": 3
+}, {
+    "type": 1,
+    "word": "エ",
+    "index": 4
+}, {
+    "type": 1,
+    "word": "オ",
+    "index": 5
+}, {
+    "type": 1,
+    "word": "カ",
+    "index": 6
+}, {
+    "type": 1,
+    "word": "キ",
+    "index": 7
+}, {
+    "type": 1,
+    "word": "ク",
+    "index": 8
+}, {
+    "type": 1,
+    "word": "ケ",
+    "index": 9
+}, {
+    "type": 1,
+    "word": "コ",
+    "index": 10
+}, {
+    "type": 1,
+    "word": "サ",
+    "index": 11
+}, {
+    "type": 1,
+    "word": "シ",
+    "index": 12
+}, {
+    "type": 1,
+    "word": "ス",
+    "index": 13
+}, {
+    "type": 1,
+    "word": "セ",
+    "index": 14
+}, {
+    "type": 1,
+    "word": "ソ",
+    "index": 15
+}, {
+    "type": 1,
+    "word": "タ",
+    "index": 16
+}, {
+    "type": 1,
+    "word": "チ",
+    "index": 17
+}, {
+    "type": 1,
+    "word": "ツ",
+    "index": 18
+}, {
+    "type": 1,
+    "word": "テ",
+    "index": 19
+}, {
+    "type": 1,
+    "word": "ト",
+    "index": 20
+}, {
+    "type": 1,
+    "word": "ナ",
+    "index": 21
+}, {
+    "type": 1,
+    "word": "ニ",
+    "index": 22
+}, {
+    "type": 1,
+    "word": "ヌ",
+    "index": 23
+}, {
+    "type": 1,
+    "word": "ネ",
+    "index": 24
+}, {
+    "type": 1,
+    "word": "ノ",
+    "index": 25
+}, {
+    "type": 1,
+    "word": "ハ",
+    "index": 26
+}, {
+    "type": 1,
+    "word": "ヒ",
+    "index": 27
+}, {
+    "type": 1,
+    "word": "フ",
+    "index": 28
+}, {
+    "type": 1,
+    "word": "ヘ",
+    "index": 29
+}, {
+    "type": 1,
+    "word": "ホ",
+    "index": 30
+}, {
+    "type": 1,
+    "word": "マ",
+    "index": 31
+}, {
+    "type": 1,
+    "word": "ミ",
+    "index": 32
+}, {
+    "type": 1,
+    "word": "ム",
+    "index": 33
+}, {
+    "type": 1,
+    "word": "メ",
+    "index": 34
+}, {
+    "type": 1,
+    "word": "モ",
+    "index": 35
+}, {
+    "type": 1,
+    "word": "ヤ",
+    "index": 36
+}, {
+    "type": 1,
+    "word": "ユ",
+    "index": 37
+}, {
+    "type": 1,
+    "word": "ヨ",
+    "index": 38
+}, {
+    "type": 1,
+    "word": "ラ",
+    "index": 39
+}, {
+    "type": 1,
+    "word": "リ",
+    "index": 40
+}, {
+    "type": 1,
+    "word": "ル",
+    "index": 41
+}, {
+    "type": 1,
+    "word": "レ",
+    "index": 42
+}, {
+    "type": 1,
+    "word": "ロ",
+    "index": 43
+}, {
+    "type": 1,
+    "word": "ワ",
+    "index": 44
+}, {
+    "type": 1,
+    "word": "ヲ",
+    "index": 45
+}, {
+    "type": 1,
+    "word": "ン",
+    "index": 46
+}, {
+    "type": 2,
+    "word": "ガ",
+    "index": 47
+}, {
+    "type": 2,
+    "word": "ゲ",
+    "index": 48
+}, {
+    "type": 2,
+    "word": "グ",
+    "index": 49
+}, {
+    "type": 2,
+    "word": "ギ",
+    "index": 50
+}, {
+    "type": 2,
+    "word": "ゴ",
+    "index": 51
+}, {
+    "type": 2,
+    "word": "ザ",
+    "index": 52
+}, {
+    "type": 2,
+    "word": "ジ",
+    "index": 53
+}, {
+    "type": 2,
+    "word": "ズ",
+    "index": 54
+}, {
+    "type": 2,
+    "word": "ゼ",
+    "index": 55
+}, {
+    "type": 2,
+    "word": "ゾ",
+    "index": 56
+}, {
+    "type": 2,
+    "word": "ダ",
+    "index": 57
+}, {
+    "type": 2,
+    "word": "ヂ",
+    "index": 58
+}, {
+    "type": 2,
+    "word": "ヅ",
+    "index": 59
+}, {
+    "type": 2,
+    "word": "デ",
+    "index": 60
+}, {
+    "type": 2,
+    "word": "ド",
+    "index": 61
+}, {
+    "type": 2,
+    "word": "バ",
+    "index": 62
+}, {
+    "type": 2,
+    "word": "ビ",
+    "index": 63
+}, {
+    "type": 2,
+    "word": "ブ",
+    "index": 64
+}, {
+    "type": 2,
+    "word": "ベ",
+    "index": 65
+}, {
+    "type": 2,
+    "word": "ボ",
+    "index": 66
+}, {
+    "type": 2,
+    "word": "パ",
+    "index": 67
+}, {
+    "type": 2,
+    "word": "ピ",
+    "index": 68
+}, {
+    "type": 2,
+    "word": "プ",
+    "index": 69
+}, {
+    "type": 2,
+    "word": "ペ",
+    "index": 70
+}, {
+    "type": 2,
+    "word": "ポ",
+    "index": 71
+}, {
+    "type": 3,
+    "word": "キャ",
+    "index": 72
+}, {
+    "type": 3,
+    "word": "キュ",
+    "index": 73
+}, {
+    "type": 3,
+    "word": "キョ",
+    "index": 74
+}, {
+    "type": 3,
+    "word": "シャ",
+    "index": 75
+}, {
+    "type": 3,
+    "word": "シュ",
+    "index": 76
+}, {
+    "type": 3,
+    "word": "ショ",
+    "index": 77
+}, {
+    "type": 3,
+    "word": "チャ",
+    "index": 78
+}, {
+    "type": 3,
+    "word": "チュ",
+    "index": 79
+}, {
+    "type": 3,
+    "word": "チョ",
+    "index": 80
+}, {
+    "type": 3,
+    "word": "ニャ",
+    "index": 81
+}, {
+    "type": 3,
+    "word": "ニュ",
+    "index": 82
+}, {
+    "type": 3,
+    "word": "ニョ",
+    "index": 83
+}, {
+    "type": 3,
+    "word": "ヒャ",
+    "index": 84
+}, {
+    "type": 3,
+    "word": "ヒュ",
+    "index": 85
+}, {
+    "type": 3,
+    "word": "ヒョ",
+    "index": 86
+}, {
+    "type": 3,
+    "word": "ミャ",
+    "index": 87
+}, {
+    "type": 3,
+    "word": "ミュ",
+    "index": 88
+}, {
+    "type": 3,
+    "word": "ミョ",
+    "index": 89
+}, {
+    "type": 3,
+    "word": "リャ",
+    "index": 90
+}, {
+    "type": 3,
+    "word": "リュ",
+    "index": 91
+}, {
+    "type": 3,
+    "word": "リョ",
+    "index": 92
+}, {
+    "type": 3,
+    "word": "ギャ",
+    "index": 93
+}, {
+    "type": 3,
+    "word": "ギュ",
+    "index": 94
+}, {
+    "type": 3,
+    "word": "ギョ",
+    "index": 95
+}, {
+    "type": 3,
+    "word": "ジャ",
+    "index": 96
+}, {
+    "type": 3,
+    "word": "ジュ",
+    "index": 97
+}, {
+    "type": 3,
+    "word": "ジョ",
+    "index": 98
+}, {
+    "type": 3,
+    "word": "ビャ",
+    "index": 99
+}, {
+    "type": 3,
+    "word": "ビュ",
+    "index": 100
+}, {
+    "type": 3,
+    "word": "ビョ",
+    "index": 101
+}, {
+    "type": 3,
+    "word": "ピャ",
+    "index": 102
+}, {
+    "type": 3,
+    "word": "ピュ",
+    "index": 103
+}, {
+    "type": 3,
+    "word": "ピョ",
+    "index": 104
+}]
+
+export {
+    H1WordList,
+    K1WordList,
+    H2WordList,
+    K2WordList,
+    H3WordList,
+    K3WordList,
+    allHWord,
+    allKWord
+}
+
+// for(let i=0;i<list.length-1;i++){
+//     if(i%2===0){
+//         arr.push(list[i]+list[i+1])}}
