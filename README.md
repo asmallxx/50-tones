@@ -18,6 +18,11 @@ npm run build
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+
+### Path
+
+演示地址（在手机上使用效果更佳哦~）：https://asmallxx.github.io/50-tones/#/
+
 ### log
 
 功能：对基础50音的顺序以及打乱背记，加上浊音、拗音心记
