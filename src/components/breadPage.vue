@@ -3,20 +3,19 @@
   <div class="home">
     <header>
       <div class="header-left">
-        <div
-          class="item"
-          :class="{'unchoose-tone':!item.show}"
-          @click="changeToneShow(item)"
-          v-for="(item,index) in currentTones"
-          :key="index"
-        >{{item.name}}</div>
-        <div class="last-tone"></div>
         <div class="item" @click="sort===1?shuffleItem():orderSort()">{{sort|sortMap}}</div>
         <div class="item" @click="type=type==='H'?'K':'H'">{{type|typeMap}}</div>
       </div>
-
+      <div class="header-center">
+        <span class="bread-img hidden">记</span>
+        <span class="bread-img hidden">忆</span>
+        <span class="bread-img">小</span>
+        <span class="bread-img">面</span>
+        <span class="bread-img">包</span>~
+      </div>
       <div class="header-right">
-        <i class="memory" @click="toReview()"></i>
+        <i class="remove" @click="breadList=[]"></i>
+        <i class="back-btn" @click="toBack()"></i>
       </div>
     </header>
     <main>
@@ -25,13 +24,11 @@
           class="card"
           @click="changeShow(item)"
           :class="{'second-word':item.show}"
-          v-for="(item) in wordList"
+          v-for="item in breadList"
           :key="item.index"
         >
           <span v-if="type==='H'">{{item.show?item.K:item.H}}</span>
           <span v-if="type==='K'">{{item.show?item.H:item.K}}</span>
-          <span v-show="!item.bread" class="add-to-bread" @click.stop="addToBread(item)"></span>
-          <span v-show="item.bread" class="alread-add" @click.stop="removeFromBread(item)"></span>
         </div>
       </transition-group>
     </main>
@@ -44,16 +41,15 @@ var _ = require("lodash");
 export default {
   data() {
     return {
-      currentTones: [
-        { name: "50", show: true, type: 1 },
-        { name: "浊", show: false, type: 2 },
-        { name: "拗", show: false, type: 3 }
-      ],
-      currentTonesType: [],
+      //   currentTones: [
+      //     { name: "50", show: true, type: 1 },
+      //     { name: "浊", show: false, type: 2 },
+      //     { name: "拗", show: false, type: 3 }
+      //   ],
+      //   currentTonesType: [],
       sort: 1,
       type: "H",
       orderList: [],
-      wordList: [],
       breadList: []
     };
   },
@@ -68,40 +64,15 @@ export default {
   },
 
   methods: {
-    checkBreadInfo() {
-      this.type = this.$route.query.type;
-      this.breadList = JSON.parse(this.$route.query.breadList);
-    },
-
     initInfo() {
-      // 初始化type列表
-      this.currentTonesType = this.currentTones
-        .filter(e => e.show)
-        .map(e => e.type);
-      this.wordList = [];
-      let Hword = allHWord
-        .filter(e => this.currentTonesType.includes(e.type))
-        .map(e => e.word);
-      let Kword = allKWord
-        .filter(e => this.currentTonesType.includes(e.type))
-        .map(e => e.word);
-      let breadIndexList = this.breadList.map(e => e.index);
-
-      for (let i = 0; i < Hword.length; i++) {
-        this.wordList.push({
-          H: Hword[i],
-          K: Kword[i],
-          index: i,
-          show: false,
-          bread: breadIndexList.indexOf(i) !== -1
-        });
-      }
-      this.orderList = JSON.parse(JSON.stringify(this.wordList));
+      this.type = this.$route.query.type;
+      this.breadList = JSON.parse(this.$route.query.list);
+      this.orderList = JSON.parse(JSON.stringify(this.breadList));
     },
 
     shuffleItem: function() {
       this.sort = 2;
-      this.wordList = _.shuffle(this.wordList);
+      this.breadList = _.shuffle(this.breadList);
     },
 
     changeShow(item) {
@@ -115,53 +86,22 @@ export default {
 
     orderSort() {
       this.sort = 1;
-      this.wordList = JSON.parse(JSON.stringify(this.orderList));
+      this.breadList = JSON.parse(JSON.stringify(this.orderList));
     },
 
-    changeToneShow(item) {
-      item.show = !item.show;
-      this.sort = 1;
-      this.type = "H";
-      this.initInfo();
-    },
-
-    creatinfo() {
-      let arr = [];
-      for (let i = 0; i < allKWord.length; i++) {
-        arr.push({
-          type: allKWord[i].type,
-          word: allKWord[i].word,
-          index: i + 1
-        });
-      }
-    },
-
-    toReview() {
-      this.breadList.forEach(e => (e.show = false));
+    toBack() {
       this.$router.push({
-        path: "/breadPage",
-        query: { list: JSON.stringify(this.breadList), type: this.type }
+        path: "/",
+        query: {
+          breadList: JSON.stringify(this.breadList),
+          type: this.$route.query.type
+        }
       });
-    },
-
-    addToBread(item) {
-      item.bread = true;
-      this.breadList.push(item);
-    },
-
-    removeFromBread(item) {
-      item.bread = false;
-      let index = this.breadList.indexOf(item);
-      this.breadList.splice(index, 1);
     }
   },
 
   created() {
-    if (this.$route.query.breadList) {
-      this.checkBreadInfo();
-    }
     this.initInfo();
-    // this.creatinfo();
   }
 };
 </script>
@@ -176,41 +116,90 @@ header {
   align-items: center;
   height: 8vh;
   background-color: #b6b2dc;
-  z-index: 3;
 
   .header-left {
-    flex: 6;
     margin-left: 5%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
   }
 
+  .header-center {
+    font-size: 16px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #82529d;
+
+    .bread-img {
+      display: inline-block;
+      padding-right: 5px;
+      margin: 1vw;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      background: url("../assets/image/bread-line-p.svg") center no-repeat;
+      background-size: contain;
+    }
+
+    .hidden {
+      display: block;
+    }
+  }
+
   .header-right {
-    flex: 1;
     margin-right: 5%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
 
-    .memory {
+    .remove {
+      position: relative;
+      display: inline-block;
+      margin-right: 20px;
+      width: 4vh;
+      height: 4vh;
+      background-color: #e5ebf4;
+      z-index: 2;
+      border-radius: 50%;
+      cursor: pointer;
+
+      &::after {
+        content: "丢";
+        position: absolute;
+        left: 1vh;
+        color: #7971c0;
+        line-height: 4vh;
+        width: 4vh;
+        height: 4vh;
+        z-index: 1;
+      }
+    }
+
+    .back-btn {
       position: relative;
       display: inline-block;
       width: 6vh;
       height: 6vh;
       background-color: #e5ebf4;
+      z-index: 2;
       border-radius: 50%;
       cursor: pointer;
 
       &::after {
-        content: "";
+        content: "back";
         position: absolute;
         top: 1vh;
-        left: 1vh;
-        background: url("../assets/image/bread-whole.svg") center no-repeat;
-        background-size: contain;
-        width: 4vh;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #7971c0;
+        text-align: center;
+        line-height: 4vh;
+        width: 4em;
         height: 4vh;
+        z-index: 1;
       }
     }
   }
@@ -234,7 +223,7 @@ header {
   }
 
   .last-tone {
-    margin-right: 2vw;
+    margin-right: 5%;
     width: 1px;
     height: 4vh;
     background-color: #7971c0;
@@ -291,7 +280,7 @@ main {
 
   .alread-add {
     position: absolute;
-    top: 2px;
+    top: 0;
     right: 3px;
     color: #fff;
     width: 15px;
@@ -303,7 +292,7 @@ main {
       position: absolute;
       width: 15px;
       height: 15px;
-      background: url("../assets/image/bread-slice.svg") center no-repeat;
+      background: url("../assets/image/bread.svg") center no-repeat;
       background-size: contain;
       left: 50%;
       top: 42%;
@@ -337,6 +326,16 @@ main {
       height: 22vw;
       line-height: 22vw;
     }
+  }
+
+  .hidden {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .header-center {
+    display: none !important;
   }
 }
 </style>

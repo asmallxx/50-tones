@@ -8,6 +8,10 @@ const routes = [{
   path: '/',
   name: 'Home',
   component: Home
+}, {
+  path: '/breadPage',
+  name: 'breadPage',
+  component: () => import("../components/breadPage")
 }, ]
 
 const router = new VueRouter({
