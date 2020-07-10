@@ -275,39 +275,37 @@ main {
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    // background-color: #dd9ebd;
 
     &::after {
       content: "+";
       position: absolute;
-      width: 15px;
-      height: 15px;
+      right: 0;
+      top: 3px;
       line-height: 15px;
-      left: 50%;
-      top: 42%;
-      transform: translate(-50%, -50%);
+      width: 0.15rem;
+      height: 0.15rem;
     }
   }
 
   .alread-add {
     position: absolute;
     top: 2px;
-    right: 3px;
+    right: 5px;
     color: #fff;
-    width: 15px;
-    height: 15px;
+    width: 0.16rem;
+    height: 0.16rem;
     border-radius: 50%;
 
     &::after {
       content: "";
       position: absolute;
-      width: 15px;
-      height: 15px;
+      width: 0.16rem;
+      height: 0.16rem;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
       background: url("../assets/image/bread-slice.svg") center no-repeat;
       background-size: contain;
-      left: 50%;
-      top: 42%;
-      transform: translate(-50%, -50%);
     }
   }
 
