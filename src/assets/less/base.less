@@ -6,13 +6,24 @@ html {
     user-select: none;
 }
 
+@media screen and (min-width: 700px) and (max-width:1280px) {
+    html {
+        font-size: 140px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    html {
+        font-size: 200px;
+    }
+}
+
 body {
     height: calc(100% - 0.82rem);
     font-size: 16px;
 }
 
 ::-webkit-scrollbar {
-    // width: 8px;
     width: 0;
     height: 8px;
     background-color: transparent;

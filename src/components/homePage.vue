@@ -187,17 +187,21 @@ header {
 }
 
 main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   .card-contain {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    //   align-items: center;
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: repeat(10, 8vw);
+    grid-row-gap: 10px;
+    grid-column-gap: 1.5vw;
   }
   .card {
-    margin: 0.2rem 0.2rem 0.2rem;
-    width: 0.4rem;
-    height: 0.5rem;
-    line-height: 0.5rem;
+    width: 100%;
+    height: 12vw;
+    line-height: 12vw;
     text-align: center;
     font-size: 0.2rem;
     color: rgb(113, 155, 192);
@@ -217,9 +221,22 @@ main {
 .card {
   transition: all 1s;
   display: inline-block;
-  margin-right: 10px;
 }
 .list-move {
   transition: transform 1s;
+}
+
+@media screen and (max-width: 700px) {
+  main {
+    .card-contain {
+      grid-template-columns: repeat(5, 15vw);
+      grid-column-gap: 4vw;
+    }
+
+    .card {
+      height: 22vw;
+      line-height: 22vw;
+    }
+  }
 }
 </style>
