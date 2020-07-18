@@ -24,7 +24,7 @@
         <!-- <p class="tip">去上一个页面</p>
         <p class="tip">卡片右上角添加吧！</p>-->
       </div>
-      <transition-group v-show="breadList.length!==0" name="list" class="card-contain" tag="div">
+      <!-- <div class="card-contain" v-show="breadList.length!==0">
         <div
           class="card"
           @click="changeShow(item)"
@@ -34,6 +34,20 @@
         >
           <span v-if="type==='H'">{{item.show?item.K:item.H}}</span>
           <span v-if="type==='K'">{{item.show?item.H:item.K}}</span>
+          <span class="eat-bread" @click.stop="removeFromBread(item)"></span>
+        </div>
+      </div>-->
+      <transition-group v-if="breadList.length!==0" name="list" class="card-contain" tag="div">
+        <div
+          class="card"
+          @click="changeShow(item)"
+          :class="{'second-word':item.show}"
+          v-for="item in breadList"
+          :key="item.index"
+        >
+          <span v-if="type==='H'">{{item.show?item.K:item.H}}</span>
+          <span v-if="type==='K'">{{item.show?item.H:item.K}}</span>
+          <span class="eat-bread" @click.stop="removeFromBread(item)"></span>
         </div>
       </transition-group>
     </main>
@@ -110,6 +124,13 @@ export default {
     clearList() {
       this.breadList = [];
       this.orderList = [];
+      this.updateSessionStorageBreadList();
+    },
+
+    removeFromBread(item) {
+      let index = this.breadList.indexOf(item);
+      this.breadList.splice(index, 1);
+      this.orderList = JSON.parse(JSON.stringify(this.breadList));
       this.updateSessionStorageBreadList();
     }
   },
@@ -271,50 +292,6 @@ main {
     cursor: pointer;
   }
 
-  .add-to-bread {
-    position: absolute;
-    top: 0;
-    right: 3px;
-    color: #fff;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    // background-color: #dd9ebd;
-
-    &::after {
-      content: "+";
-      position: absolute;
-      width: 15px;
-      height: 15px;
-      line-height: 15px;
-      left: 50%;
-      top: 42%;
-      transform: translate(-50%, -50%);
-    }
-  }
-
-  .alread-add {
-    position: absolute;
-    top: 0;
-    right: 3px;
-    color: #fff;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-
-    &::after {
-      content: "";
-      position: absolute;
-      width: 15px;
-      height: 15px;
-      background: url("../assets/image/bread.svg") center no-repeat;
-      background-size: contain;
-      left: 50%;
-      top: 42%;
-      transform: translate(-50%, -50%);
-    }
-  }
-
   .second-word {
     color: rgb(121, 113, 192);
     background-color: fadeout(@buleColor, 90%);
@@ -326,19 +303,38 @@ main {
   transition: all 1s;
   display: inline-block;
 }
+
 .list-move {
   transition: transform 1s;
 }
 
-// .tip {
-//   width: 100%;
-//   p {
-//     margin-top: 10vh;
-//     font-size: 20px;
-//     color: #c4c4e4;
-//     // line-height: ;
-//   }
-// }
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  // transform: translateY(30px);
+}
+
+.eat-bread {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  color: #fff;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: url("../assets/image/eat.svg") center no-repeat;
+    background-size: contain;
+    left: 50%;
+    top: 42%;
+    transform: translate(-50%, -50%);
+  }
+}
 
 .tip {
   margin-top: 3vh;

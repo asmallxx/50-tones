@@ -76,7 +76,6 @@ export default {
       let { type, breadList, currentTones } = JSON.parse(
         sessionStorage.getItem("homePageInfo")
       );
-      console.log(JSON.parse(sessionStorage.getItem("homePageInfo")));
       this.type = type;
       this.breadList = breadList;
       this.currentTones = currentTones;
@@ -186,7 +185,6 @@ export default {
 
   created() {
     if (sessionStorage.getItem("homePageInfo")) {
-      console.log(JSON.parse(sessionStorage.getItem("homePageInfo")));
       this.checkBreadInfo();
     }
     this.initInfo();
