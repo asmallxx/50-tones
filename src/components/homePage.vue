@@ -20,7 +20,10 @@
       </div>
     </header>
     <main>
-      <transition-group name="list" class="card-contain" tag="div">
+      <div class="tip" v-show="wordList.length===0">
+        <p>左上角选择类型哦~</p>
+      </div>
+      <transition-group v-show="wordList.length!==0" name="list" class="card-contain" tag="div">
         <div
           class="card"
           @click="changeShow(item)"
@@ -39,7 +42,7 @@
 </template>
 
 <script>
-import { allHWord, allKWord } from "../service/utils/word";
+import { allWord } from "../service/utils/word";
 var _ = require("lodash");
 export default {
   data() {
@@ -68,42 +71,52 @@ export default {
   },
 
   methods: {
+    //检查小面包页面是否吃掉
     checkBreadInfo() {
-      this.type = this.$route.query.type;
-      this.breadList = JSON.parse(this.$route.query.breadList);
+      let { type, breadList, currentTones } = JSON.parse(
+        sessionStorage.getItem("homePageInfo")
+      );
+      console.log(JSON.parse(sessionStorage.getItem("homePageInfo")));
+      this.type = type;
+      this.breadList = breadList;
+      this.currentTones = currentTones;
     },
 
+    // 初始化列表信息
     initInfo() {
-      // 初始化type列表
       this.currentTonesType = this.currentTones
         .filter(e => e.show)
         .map(e => e.type);
-      this.wordList = [];
-      let Hword = allHWord
-        .filter(e => this.currentTonesType.includes(e.type))
-        .map(e => e.word);
-      let Kword = allKWord
-        .filter(e => this.currentTonesType.includes(e.type))
-        .map(e => e.word);
-      let breadIndexList = this.breadList.map(e => e.index);
-
-      for (let i = 0; i < Hword.length; i++) {
-        this.wordList.push({
-          H: Hword[i],
-          K: Kword[i],
-          index: i,
-          show: false,
-          bread: breadIndexList.indexOf(i) !== -1
-        });
-      }
+      this.wordList = allWord.filter(e =>
+        this.currentTonesType.includes(e.type)
+      );
+      this.initListBread();
       this.orderList = JSON.parse(JSON.stringify(this.wordList));
     },
 
+    initListBread() {
+      this.wordList.forEach(e => {
+        if (this.breadList.map(i => i.index).includes(e.index)) {
+          e.bread = true;
+        } else {
+          e.bread = false;
+        }
+      });
+    },
+
+    // 列表乱序
     shuffleItem: function() {
       this.sort = 2;
       this.wordList = _.shuffle(this.wordList);
     },
 
+    // 列表顺序
+    orderSort() {
+      this.sort = 1;
+      this.wordList = JSON.parse(JSON.stringify(this.orderList));
+    },
+
+    // 查看对应平假或者片假
     changeShow(item) {
       if (!item.show) {
         item.show = true;
@@ -113,55 +126,70 @@ export default {
       }
     },
 
-    orderSort() {
-      this.sort = 1;
-      this.wordList = JSON.parse(JSON.stringify(this.orderList));
-    },
-
+    // 选择音的对应类型显示
     changeToneShow(item) {
       item.show = !item.show;
       this.sort = 1;
       this.type = "H";
+      if (!item.show) {
+        this.breadList = this.breadList.filter(e => e.type !== item.type);
+      }
+      this.updateSessionStorageBreadList();
       this.initInfo();
     },
 
-    creatinfo() {
-      let arr = [];
-      for (let i = 0; i < allKWord.length; i++) {
-        arr.push({
-          type: allKWord[i].type,
-          word: allKWord[i].word,
-          index: i + 1
-        });
+    updateSessionStorageBreadList() {
+      if (sessionStorage.getItem("homePageInfo")) {
+        let obj = JSON.parse(sessionStorage.getItem("homePageInfo"));
+        obj.breadList = this.breadList;
+        sessionStorage.setItem("homePageInfo", JSON.stringify(obj));
+      } else {
+        this.breadList.forEach(e => (e.show = false));
+        let obj = {
+          breadList: this.breadList,
+          type: this.type,
+          currentTones: this.currentTones
+        };
+        sessionStorage.setItem("homePageInfo", JSON.stringify(obj));
       }
     },
 
+    // 去记忆小面包页面
     toReview() {
       this.breadList.forEach(e => (e.show = false));
+      let obj = {
+        breadList: this.breadList,
+        type: this.type,
+        currentTones: this.currentTones
+      };
+      sessionStorage.setItem("homePageInfo", JSON.stringify(obj));
       this.$router.push({
-        path: "/breadPage",
-        query: { list: JSON.stringify(this.breadList), type: this.type }
+        path: "/breadPage"
       });
     },
 
+    // 添加小面包
     addToBread(item) {
       item.bread = true;
       this.breadList.push(item);
+      this.updateSessionStorageBreadList();
     },
 
+    //取消添加小面包
     removeFromBread(item) {
       item.bread = false;
       let index = this.breadList.indexOf(item);
       this.breadList.splice(index, 1);
+      this.updateSessionStorageBreadList();
     }
   },
 
   created() {
-    if (this.$route.query.breadList) {
+    if (sessionStorage.getItem("homePageInfo")) {
+      console.log(JSON.parse(sessionStorage.getItem("homePageInfo")));
       this.checkBreadInfo();
     }
     this.initInfo();
-    // this.creatinfo();
   }
 };
 </script>
@@ -243,6 +271,7 @@ header {
 
 main {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
@@ -322,6 +351,14 @@ main {
 }
 .list-move {
   transition: transform 1s;
+}
+
+.tip {
+  p {
+    margin-top: 3vh;
+    font-size: 20px;
+    color: #c4c4e4;
+  }
 }
 
 @media screen and (max-width: 700px) {

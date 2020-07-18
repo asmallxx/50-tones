@@ -14,12 +14,17 @@
         <span class="bread-img">包</span>~
       </div>
       <div class="header-right">
-        <i class="remove" @click="breadList=[]"></i>
+        <i class="remove" @click="clearList()"></i>
         <i class="back-btn" @click="toBack()"></i>
       </div>
     </header>
     <main>
-      <transition-group name="list" class="card-contain" tag="div">
+      <div v-show="breadList.length===0">
+        <p class="tip">小面包全吃啦~</p>
+        <!-- <p class="tip">去上一个页面</p>
+        <p class="tip">卡片右上角添加吧！</p>-->
+      </div>
+      <transition-group v-show="breadList.length!==0" name="list" class="card-contain" tag="div">
         <div
           class="card"
           @click="changeShow(item)"
@@ -41,12 +46,6 @@ var _ = require("lodash");
 export default {
   data() {
     return {
-      //   currentTones: [
-      //     { name: "50", show: true, type: 1 },
-      //     { name: "浊", show: false, type: 2 },
-      //     { name: "拗", show: false, type: 3 }
-      //   ],
-      //   currentTonesType: [],
       sort: 1,
       type: "H",
       orderList: [],
@@ -65,8 +64,11 @@ export default {
 
   methods: {
     initInfo() {
-      this.type = this.$route.query.type;
-      this.breadList = JSON.parse(this.$route.query.list);
+      let { type, breadList } = JSON.parse(
+        sessionStorage.getItem("homePageInfo")
+      );
+      this.type = type;
+      this.breadList = breadList;
       this.orderList = JSON.parse(JSON.stringify(this.breadList));
     },
 
@@ -90,13 +92,25 @@ export default {
     },
 
     toBack() {
+      let obj = JSON.parse(sessionStorage.getItem("homePageInfo"));
+      obj.breadList = this.breadList;
+      obj.type = this.type;
+      sessionStorage.setItem("homePageInfo", JSON.stringify(obj));
       this.$router.push({
-        path: "/",
-        query: {
-          breadList: JSON.stringify(this.breadList),
-          type: this.$route.query.type
-        }
+        path: "/"
       });
+    },
+
+    updateSessionStorageBreadList() {
+      let obj = JSON.parse(sessionStorage.getItem("homePageInfo"));
+      obj.breadList = this.breadList;
+      sessionStorage.setItem("homePageInfo", JSON.stringify(obj));
+    },
+
+    clearList() {
+      this.breadList = [];
+      this.orderList = [];
+      this.updateSessionStorageBreadList();
     }
   },
 
@@ -167,7 +181,7 @@ header {
       cursor: pointer;
 
       &::after {
-        content: "丢";
+        content: "吃";
         position: absolute;
         left: 1vh;
         color: #7971c0;
@@ -232,6 +246,7 @@ header {
 
 main {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
@@ -315,6 +330,21 @@ main {
   transition: transform 1s;
 }
 
+// .tip {
+//   width: 100%;
+//   p {
+//     margin-top: 10vh;
+//     font-size: 20px;
+//     color: #c4c4e4;
+//     // line-height: ;
+//   }
+// }
+
+.tip {
+  margin-top: 3vh;
+  font-size: 20px;
+  color: #c4c4e4;
+}
 @media screen and (max-width: 700px) {
   main {
     .card-contain {
